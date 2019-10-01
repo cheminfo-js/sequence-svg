@@ -1,5 +1,7 @@
 const TextToSVG = require('text-to-svg');
 const textToSVG = TextToSVG.loadSync();
+const fs = require('fs');
+const { join } = require('path');
 
 const attributes = { fill: 'red', stroke: 'black' };
 const options = {
@@ -14,4 +16,4 @@ const metrics = textToSVG.getMetrics('hello', options);
 console.log(metrics);
 const svg = textToSVG.getSVG('hello', options);
 
-console.log(svg);
+fs.writeFileSync(join(__dirname, 'test.svg'), svg, 'utf8');
